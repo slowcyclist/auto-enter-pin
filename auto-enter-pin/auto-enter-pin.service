@@ -1,0 +1,10 @@
+[Unit]
+Description="Automatically enter pin at boot"
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+StandardOutput=
+ExecStart=/usr/bin/python3 -u /home/nemo/auto-enter-pin/auto-enter-pin.py
+[Install]
+WantedBy=user-session.target
