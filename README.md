@@ -35,6 +35,8 @@ either the pin is not locked or it has already been entered and we quit.
 The script needs only ordinary user rights for execution and installation
 ## installation 
 
+Download the auto-enter-pin folder to the home directory (`/home/nemo/`)
+
 Edit the content of `auto_enter_pin_settings.py` and enter your pin code
 _Yes, I know, this is not very safe. OTOH if someone has access to this file
 inside your phone, you are already pretty much screwed!_
