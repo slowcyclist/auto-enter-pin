@@ -8,7 +8,7 @@ this script is meant to automatically enter the SIM pin on startup on SailfishOS
  With this script I just press the power button and put the phone back in my pocket.
 
 * There is no reduced security : the phone lock code (with automatic lock) already
- protects from unwanted usage of the phone, including for calling.
+ protects against unwanted usage of the phone, including for calling.
 (But you do not want to disable pin, so that the sim is protected against usage in another phone.)
 
 * It seems I'm not the only one to want this behavior. See on together.jolla.com [here](https://together.jolla.com/question/189508/auto-unlock-sim-card-dont-ask-for-the-sim-pin/) and [here](https://together.jolla.com/question/76289/reboot-without-pin-code-query/).
@@ -19,7 +19,7 @@ Tada, now you can get in touch with that person!
 
 * If your phone gets stollen, the thief will eventually on/off the phone to disconnect it from the 
 carrier. With this auto-reconnection you can still contact the phone and, if you have a script
-that whatches for specific sms messages, you can do whatever you have planned in advance for
+that whatches for specific sms messages, you can do whatever you have planned _in advance_ for
 such event (erase data, get the gps coordinates...). OTOH, if the phone is flashed or factory-reset... 
 
 ## How does it work?
