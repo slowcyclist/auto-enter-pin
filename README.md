@@ -58,3 +58,10 @@ systemctl --user start auto-enter-pin
 After reboot, the phone should get online alone after showing the phone unlock screen 
 for a few seconds. If it does not work, look inside the `auto-enter-pin.log` to see
 what went wrong.
+
+**If it does not work right away check that the pin is correct and check the log. BE CAREFUL THAT YOU CAN LOCK YOUR SIM!**
+
+If you want to deactivate the script, in the terminal :
+```
+systemctl --user disable auto-enter-pin
+```
