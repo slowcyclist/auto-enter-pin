@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 pin" >&2
+  exit 1
+fi
+
+wd=$(dirname $(readlink -f $0))
+
+cd $wd
+
+cp *.service /home/nemo/.config/systemd/user/
+
+systemctl --user enable auto-enter-pin.service
+
+cardidentifier=$($wd/list-modems | grep --binary-files=text CardIdentifier | cut -d "=" -f2)
+
+echo $cardidentifier
+
+sed -i -r 's|^(mypin\s*=\s*).*|\1\"'$1'\"|' auto_enter_pin_settings.py
+
+sed -i -r 's|^(simcardidentifier\s*=\s*).*|\1\"'$cardidentifier'\"|' auto_enter_pin_settings.py
