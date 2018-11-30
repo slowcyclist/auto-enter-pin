@@ -1,5 +1,5 @@
 # auto-enter-pin
-this script is meant to automatically enter the SIM pin on startup on SailfishOS
+this script is meant to automatically enter the SIM pin on startup on SailfishOS. Supports dual sim configurations too.
 
 ## Why do I want this? 
 
