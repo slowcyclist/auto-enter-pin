@@ -33,28 +33,31 @@ If this sequence does not occur for a given time,
 either the pin is not locked or it has already been entered and we quit.
 
 The script needs only ordinary user rights for execution and installation
+
 ## installation 
 
 Download the auto-enter-pin folder to the home directory (`/home/nemo/`)
 
-Automatic install :
-- in a terminal run `sh installer wxyz` where wxyz are your pin digits
-
-Manual install :
-- Edit the content of `auto_enter_pin_settings.py` and enter your pin code
+*Edit configuration :*
+- Edit the content of `auto-enter-pin.conf` and enter your pin code
 _Yes, I know, this is not very safe. OTOH if someone has access to this file
 inside your phone, you are already pretty much screwed!_
 
-- YOU MUST ALSO edit the `simcardidentifier` otherwise the script won't do anything!
-you can either set it to `""`, or put your own sim identifier that you can get by running 
+- YOU MUST ALSO edit the `simcardidentifier` or comment it out otherwise the script won't do anything!
+You can get your own sim identifier by running 
 `list-modems` in the terminal
 
+*Manual install of the service :*
 - Copy the file `auto-enter-pin.service` to `/home/nemo/.config/systemd/user/`
 - Then, in the terminal :
 ```
 systemctl --user enable auto-enter-pin
 systemctl --user start auto-enter-pin
- ```
+```
+
+*Automatic install of the service :*
+- in a terminal run `sh installer`
+
 After reboot, the phone should get online alone after showing the phone unlock screen 
 for a few seconds. If it does not work, look inside the `auto-enter-pin.log` to see
 what went wrong.
