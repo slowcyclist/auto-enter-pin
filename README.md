@@ -1,5 +1,7 @@
 # auto-enter-pin
-this script is meant to automatically enter the SIM pin on startup on SailfishOS. Supports dual sim configurations too.
+This script is meant to automatically enter the SIM pin on startup on SailfishOS. It should also work in Ubuntu Touch which uses the same telephony stack.
+
+The script can handles dual-SIM configurations, and even controling in which order the SIMs should come up.
 
 ## Why do I want this? 
 
@@ -21,6 +23,8 @@ Tada, now you can get in touch with that person!
 carrier. With this auto-reconnection you can still contact the phone and, if you have a script
 that whatches for specific sms messages, you can do whatever you have planned _in advance_ for
 such event (erase data, get the gps coordinates...). OTOH, if the phone is flashed or factory-reset... 
+
+* In dual SIM phones, controlling which SIM comes up first [may have some importance for Bluethooth pairing](https://together.jolla.com/question/168601/dual-sim-choose-sim-for-bluetooth-hfp-connection/).
 
 ## How does it work?
 
@@ -45,7 +49,9 @@ inside your phone, you are already pretty much screwed!_
 
 - YOU MUST ALSO edit the `simcardidentifier` or comment it out otherwise the script won't do anything!
 You can get your own sim identifier by running 
-`list-modems` in the terminal
+`list-modems` in the terminal (the script `list-modems` is provided in the repo).
+
+- Set or remove the sim priority according to your needs.
 
 *Manual install of the service :*
 - Copy the file `auto-enter-pin.service` to `/home/nemo/.config/systemd/user/`
