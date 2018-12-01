@@ -1,7 +1,7 @@
 # auto-enter-pin
 This script is meant to automatically enter the SIM pin on startup on SailfishOS. It should also work in Ubuntu Touch which uses the same telephony stack.
 
-The script can handles dual-SIM configurations, and even controling in which order the SIMs should come up.
+The script can handle dual-SIM configurations, and even controling in which order the SIMs should come up.
 
 ## Why do I want this? 
 
