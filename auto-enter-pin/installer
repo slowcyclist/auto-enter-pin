@@ -9,6 +9,10 @@ wd=$(dirname $(readlink -f $0))
 
 cd $wd
 
+if [ ! -d /home/nemo/.config/systemd/user/ ]
+        then mkdir -p /home/nemo/.config/systemd/user/
+fi
+
 cp *.service /home/nemo/.config/systemd/user/
 
 systemctl --user enable auto-enter-pin.service
