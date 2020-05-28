@@ -1,12 +1,12 @@
 # auto-enter-pin
-This script is meant to automatically enter the SIM pin on startup on SailfishOS. It should also work in Ubuntu Touch which uses the same telephony stack.
+This script is meant to automatically enter the SIM pin on startup on SailfishOS and Ubuntu-Touch/Ubports which both use the same telephony stack.
 
 The script can handle dual-SIM configurations, and even controling in which order the SIMs should come up.
 
 ## Why do I want this? 
 
 * Whenever I boot my phone I want it to be online.
- Even if sailfish boots fast, I just do not want to wait until I can enter my pin. 
+ Even if the OS boots fast, I just do not want to wait until I can enter my pin. 
  With this script I just press the power button and put the phone back in my pocket.
 
 * There is no reduced security : the phone lock code (with automatic lock) already
@@ -28,7 +28,7 @@ such event (erase data, get the gps coordinates...). OTOH, if the phone is flash
 
 ## How does it work?
 
-At startup, systemd lauches the script automatically
+At startup, systemd (SFOS) or upstart (Ubports) launches the script automatically
 
 The script watches for dbus signals from ofono that indicate the modem is
 coming online and ready to receive pin code, then we enter the pin.
@@ -40,7 +40,7 @@ The script needs only ordinary user rights for execution and installation
 
 ## installation 
 
-Download the auto-enter-pin folder to the home directory (`/home/nemo/`)
+Download the auto-enter-pin folder to the home directory (SFOS : `/home/nemo/` ; Ubports : `/home/phablet` )
 
 *Edit configuration :*
 - Edit the content of `auto-enter-pin.conf` and enter your pin code
@@ -53,7 +53,10 @@ You can get your own sim identifier by running
 
 - Set or remove the sim priority according to your needs.
 
-*Manual install of the service :*
+### setup autostart SFOS
+This is controled by a systemd service
+
+*Manual install :*
 - Copy the file `auto-enter-pin.service` to `/home/nemo/.config/systemd/user/`
 - Then, in the terminal :
 ```
@@ -64,13 +67,30 @@ systemctl --user start auto-enter-pin
 *Automatic install of the service :*
 - in a terminal run `sh installer`
 
-After reboot, the phone should get online alone after showing the phone unlock screen 
-for a few seconds. If it does not work, look inside the `auto-enter-pin.log` to see
-what went wrong.
-
-**If it does not work right away check that the pin is correct and check the log. BE CAREFUL THAT YOU CAN LOCK YOUR SIM!**
-
 If you want to deactivate the script, in the terminal :
 ```
 systemctl --user disable auto-enter-pin
 ```
+
+### setup autostart Ubports
+At the moment (2020) Ubports is still using upstart for the boot process
+
+- Create a file `/home/phablet/.config/upstart/start-auto-enter-pin.conf`
+and  content should be :
+```
+description "auto enter pin"
+start on started unity8
+exec python3 /home/phablet/auto-enter-pin/auto-enter-pin.py
+```
+You may add `startup_delay 0` in the `auto-enter-pin.conf` file.  
+
+### Checking operation and troubleshooting 
+After reboot, the phone should get online alone after showing the phone unlock screen 
+for a few seconds on SFOS. In Ubports, if the sim unlocking is fast enough the unlock screen does not show up, otherwise you simply cancel it.
+If the sim is not unlocked, look inside the `auto-enter-pin.log` to see
+what went wrong.
+
+**WARNING: If it does not work right away check that the pin is correct and check the log. BE CAREFUL THAT YOU CAN LOCK YOUR SIM!**
+
+
+
