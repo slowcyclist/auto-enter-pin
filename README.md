@@ -21,7 +21,7 @@ Tada, now you can get in touch with that person!
 
 * If your phone gets stollen, the thief will eventually on/off the phone to disconnect it from the 
 carrier. With this auto-reconnection you can still contact the phone and, if you have a script
-that whatches for specific sms messages, you can do whatever you have planned _in advance_ for
+that watches for specific sms messages, you can do whatever you have planned _in advance_ for
 such event (erase data, get the gps coordinates...). OTOH, if the phone is flashed or factory-reset... 
 
 * In dual SIM phones, controlling which SIM comes up first [may have some importance for Bluethooth pairing](https://together.jolla.com/question/168601/dual-sim-choose-sim-for-bluetooth-hfp-connection/).
